@@ -274,4 +274,23 @@ as.integer(bt.new)
 bt.new[7] <- 'B'
 bt.new[8] <- 'C'
 bt.new
-1
+
+
+#
+# 4일
+#
+# 함수 변환값이 여러 개 일때의 처리
+
+myfunc <- function(x,y){
+  val.sum <- x + y
+  val.mul <- x * y
+  
+  return( list(sum = val.sum, mul = val.mul) )
+}
+
+result <- myfunc( 5, 8 )
+s <- result$sum
+m <- result$mul
+cat( '5 + 8 = ', s, '\n')
+cat( '5 * 8 = ', m, '\n')
+
