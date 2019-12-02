@@ -145,11 +145,11 @@ boxplot.stats(mtcars$disp)
 # 각 그룹의 상자그림을 비교하여
 # 관찰할 수 있는 것이 무엇인지 나타내시오.
 
-box <- boxplot(mtcars$mpg~mtcars$gear)
+boxplot(mtcars$mpg~mtcars$gear)
 ### 3단기어 자동차가 4단과 5단 기어 자동차보다
-### 연비 산포 범위가 좁은 것으로 나타나므로
-### 연비율이 좋다고 할 수 있습니다.
-summary( mtcars$mpg[ mtcars$gear==3] )
-summary( mtcars$mpg[ mtcars$gear==4] )
-summary( mtcars$mpg[ mtcars$gear==5] )
-
+### 연비 산포 범위가 좁은 것으로 나타나므로,
+### 4단, 5단 기어 자동차보다
+### 연비 신뢰도가 높다고 할 수 있습니다.
+summary( mtcars$mpg[ mtcars$gear==3 ] )
+summary( mtcars$mpg[ mtcars$gear==4 ] )
+summary( mtcars$mpg[ mtcars$gear==5 ] )
