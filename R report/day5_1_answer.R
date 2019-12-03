@@ -96,7 +96,7 @@ cyl.table
 barplot( cyl.table, main = "Cylender", xlab = '#of cyl', ylab = 'freq' )
 
 #	5. 중량(wt)의 히스토그램을 출력하시오.
-hist( table( mtcars$wt ), main = 'Weight', xlab = 'weight', ylab = 'freq' )
+hist( mtcars$wt , main = 'Weight', xlab = 'weight', ylab = 'freq' )
 
 #	6. 중량(wt)에 대해 상자그림을 출력하시오.(단, 상자그림으로부터 관찰할 수 있는정보를 함께 출력하시오.)
 boxplot( mtcars$wt, main = '중량' )

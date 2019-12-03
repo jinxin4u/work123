@@ -91,6 +91,7 @@ score.name[which.max(score)]
 # 성적에 대한 상자그림을 작성하고,
 # 이상치에 해당하는 과목이 있으면 출력하시오.
 boxplot(score, main = "SCORE BOXPLOT")
+boxplot.stats(score)
 boxplot.stats(score)$out
 
 # 3-7
