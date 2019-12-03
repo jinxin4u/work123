@@ -153,3 +153,4 @@ boxplot(mtcars$mpg~mtcars$gear)
 summary( mtcars$mpg[ mtcars$gear==3 ] )
 summary( mtcars$mpg[ mtcars$gear==4 ] )
 summary( mtcars$mpg[ mtcars$gear==5 ] )
+

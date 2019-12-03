@@ -178,6 +178,7 @@ barplot( table( mtcars$gear), main = 'gear',
          las = 1, col = 'green')
 par( mfrow = c(1,1) ) # 가상화면 분할 해제
 
+mtcars
 
 
 
