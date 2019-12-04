@@ -184,7 +184,7 @@ str( myds )
 head( myds )
 table( myds$grp )
 
-# 4단계 : 히스토그램에 의한 관측값의 분포 확인
+# 4단계 : 히스토그램에 의한 관측값의 분포 확인 : 정규분포에 가까운지
 par( mfrow=c(2,3) )
 for(i in 1:5){
   hist( myds[,i], main = colnames( myds )[i],
@@ -192,7 +192,7 @@ for(i in 1:5){
 }
 par( mfrow = c(1,1))
 
-# 5단계 : 상자그림에 의한 관측값의 분포 확인
+# 5단계 : 상자그림에 의한 관측값의 분포 확인 : 이상치는 없는지
 par( mfrow=c(2,3) )
 for(i in 1:5){
   boxplot( myds[,i], main = colnames( myds )[i])
