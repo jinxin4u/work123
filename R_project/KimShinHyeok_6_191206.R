@@ -269,6 +269,7 @@ cctv_CSouth$설치년월.year[ cctv_CSouth$설치년월.year < 1990 | cctv_CSout
 cctv_JNorth$설치년월.year[ cctv_JNorth$설치년월.year < 1990 | cctv_JNorth$설치년월.year > 2019 ] <- NA
 cctv_JSouth$설치년월.year[ cctv_JSouth$설치년월.year < 1990 | cctv_JSouth$설치년월.year > 2019 ] <- NA
 cctv_KNorth$설치년월.year[ cctv_KNorth$설치년월.year < 1990 | cctv_KNorth$설치년월.year > 2019 ] <- NA
+cctv_Jeju$설치년월.year[ cctv_Jeju$설치년월.year < 1990 | cctv_Jeju$설치년월.year > 2019 | cctv_Jeju = '' ] <- NA
 
 
 
@@ -355,14 +356,12 @@ cs2016
 
 crim_area <- data.frame()
 crim_area <- crim_area %>% bind_rows(cs2017,cs2016)
+
 rownames(crim_area) <- c(2017, 2016)
-year <- 2016:2017
 
 crim_area
-Korea_Population
 
-plot()
-
+df <- left_join(Korea_Population,crim_area)
 
 #시계열 분석 : L1 -  연차별 범죄율 수, L2 - 연차별 CCTV 설치 수
 
@@ -374,4 +373,6 @@ plot()
 # Crim_Evidence <- read.csv(file = 'evidence.csv', header = T, encoding = 'UTF-8')
 # Crim_Evidence
 
+
+cctv_Jeju
 
