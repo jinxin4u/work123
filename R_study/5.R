@@ -3,7 +3,7 @@
 #
 
 # read.table
-setwd('D:/work123')
+setwd('C:/Rstudy/work123/R_study')
 df <- read.table( file = 'airquality.txt', header = TRUE)
 df
 
