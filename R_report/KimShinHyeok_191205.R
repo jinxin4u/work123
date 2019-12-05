@@ -24,7 +24,7 @@ ds[ !complete.cases(ds), ]
 
 # (3) 결측값이 포함된 행은 몇 개인지 출력하시오.
 
-sum( rowSums(is.na(x)) > 0 )
+sum( rowSums( is.na(ds) ) > 0 )
 
 # (4) 결측값이 포함된 행들을 제외하고 새로운 데이터셋 ds.new를 만들어보시오.
 
@@ -56,8 +56,14 @@ par( mfrow = c(1,1) )
 # (2) 특이값이 존재하는 경우 이상치를 NA로 대체하여 저장하시오.
 for (i in 1:8) {
   outlier <- boxplot.stats(st[,i])$out
-  st[,i][ st[,i] %in% outlier] <- NA
+  st[ st[,i] %in% outlier] <- NA
 }
+st
+# st
+# 
+# outlier <- boxplot.stats(st[,1])$out
+# st[,1][ st[,1] %in% outlier] <- NA
+# st
 
 # (3) st에서 NA가 존재하는 행들을 제거하여 st2에 저장하시오.
 
