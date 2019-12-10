@@ -1,0 +1,14 @@
+www.rdocumentation.org/packages/vcd/versions/1.4-4/topics/mosaic
+범주 - 다중 변수 그래프
+
+skyeong.net/186
+차원축소와 시각화 기법
+T-sne, PCA... etc
+
+http://cloud.google.com/maps-platform/#get-started
+구글맵 프로젝트생성 계정생성
+
+www.google.co.kr/maps
+
+http://rpubs.com/cardiomoon/222145
+한국행정지도 패키지
