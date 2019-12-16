@@ -211,37 +211,57 @@ cor( DNAtemper[ , c(6,7) ] )  # 다변량 상관 계수
 
 
 
-### 15-18 관광 실태
-## 연령대
-## 성별
-## 방문목적
-## 여행 형태(개별, 패키지 등)
-## 방문횟수
 
 
-### 검색지, 주 방문지, 행선지, 방문지 선택이유 
+## 내국인 : 국가별 상관관계 분석
+##    => 음의 상관관계가 높으면 내국인의 카운터파티로 유용
 
-### 관광 체류 기간, 숙박 일수
+setwd('C:/Rstudy/work123/R_project/team/1. 관광객수')
+korChemistry <- read.csv("외인+한국 관광 월단위 2015-2018.csv", header=T)
+korChemistry
 
-### 숙박장소
+plot(korChemistry$한국, korChemistry$일본,
+     xlab = "한국인 관광객 수", ylab = "일본 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$중국,
+     xlab = "한국인 관광객 수", ylab = "중국 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$홍콩,
+     xlab = "한국인 관광객 수", ylab = "홍콩 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$대만,
+     xlab = "한국인 관광객 수", ylab = "대만 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$싱가폴,
+     xlab = "한국인 관광객 수", ylab = "싱가폴 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$말레이시아,
+     xlab = "한국인 관광객 수", ylab = "말레이시아 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$인도네시아,
+     xlab = "한국인 관광객 수", ylab = "인도네시아 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$베트남,
+     xlab = "한국인 관광객 수", ylab = "베트남 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$아시아기타,
+     xlab = "한국인 관광객 수", ylab = "아시아기타 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$미국,
+     xlab = "한국인 관광객 수", ylab = "북미권 관광객 수",
+     col = "red", pch = 19)
+plot(korChemistry$한국, korChemistry$서구기타,
+     xlab = "한국인 관광객 수", ylab = "서구기타 관광객 수",
+     col = "red", pch = 19)
 
-### 관광 만족도
+# 회귀식 도출
+res <- lm( 중화권~한국, data = korChemistry ) 
+res
+res <- lm( 동남아권~한국, data = korChemistry ) 
+res
+# 회귀선
+abline( res )
 
-### 여행 불만족 요인
-
-### 주 교통수단
-## 교통수단 만족도
-
-### 관광 시 주요 소비
-
-### 지자체 관광 투자
-
-### 관광 사업 분류별 수
-
-### 관광 사업체 매출액
-
-### 1인당 지출 경비
-
-### 국내인 관광 경비
-
+# 상관계수 도출 (correlation)
+cor( korChemistry[ , c(2,13) ] )
 
