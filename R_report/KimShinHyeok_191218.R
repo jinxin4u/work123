@@ -1,0 +1,145 @@
+# 이름 : 김신혁
+# 작성일 : 191218
+# 제출일 : 191218
+# * 실습 결과를 R Script file로 제출
+# * R Script file 이름은 "영문본인이름_제출일날짜.R" 부여하여 제출
+# * R Script file의 처음에 주석으로 본인 이름과 작성일/제출일 기록
+# 
+# 문1)
+# R에서 제공하는 state.x77 데이터셋에 대해 k-평균 군집화를 실시하고 결과를 그래프로 출력하시오.
+# 
+# • 군집의 수는 5로 한다.
+# • state.x77은 각 변수(열)의 값들의 단위의 차이가 많이 나기 때문에 0~1 표준화를 실시한 후 군집화를 실행한다.
+# 
+# 
+
+df <- data.frame(state.x77)
+str(df)
+
+func <- function(x){
+  return (x-min(x)) / (max(x) - min(x))
+}
+
+persented_df <- apply(df,2,func)
+
+fit <- kmeans(x = persented_df, centers = 5)
+
+
+library(cluster)
+clusplot(persented_df,
+         fit$cluster,
+         color = TRUE,
+         shape = TRUE,
+         labels = 1,
+         lines = 0)
+
+
+# 문2)
+# mlbench 패키지에서 제공하는 Sonar 데이터셋에 대해 k-평균 군집화를 실시하고 결과를 그래프로 출력하시오.
+# 
+# • 군집의 수는 2로 한다.
+# • Sonar 데이터셋에서 마지막에 있는 Class 열은 제외하고 군집화를 실행한다.
+# 
+# library( mlbench )
+# data( "Sonar" ) 			# 데이터셋 불러오기
+# 
+install.packages("mlbench")
+library(mlbench)
+dd <- data.frame(Sonar)
+dd
+
+fit <- kmeans(x = dd[-ncol(dd)], centers = 2)
+fit
+
+clusplot(dd,
+         fit$cluster,
+         color = TRUE,
+         shape = TRUE,
+         lines = 1,
+         labels = 0)
+
+# 문3) 
+# mlbench 패키지에서 제공하는 Sonar 데이터셋에 대해 k-최근접 이웃 알고리즘을 이용하여 모델을 만들고 예측 정확도를 측정하시오.
+# 
+# . Sonar 데이터셋에서 마지막에 있는 Class 열이 그룹 정보이다.
+# . Sonar 데이터셋에서 홀수 번째 데이터(관측값)를 훈련용 데이터로 하고, 짝수번째 데이터(관측값)를 테스트용 데이터로 한다.
+# . k-최근접 이웃에서 k를 3, 5, 7로 다르게 하여 예측 정확도를 비교한다.
+#
+
+dd <- data.frame(Sonar)
+str(dd)
+# 훈련용 데이터-홀
+idx <- c(1:208 %% 2 != 0)
+n <- ncol(dd)
+
+ds.training <- dd[idx, -n]
+g.training <- dd[idx, n]
+
+# 테스트용 데이터-짝
+ds.testing <- dd[-idx, -n]
+g.testing <- dd[-idx, n]
+
+# k = 3
+library(class)
+pred <- knn(ds.training,
+       ds.testing,
+       g.training,
+       k = 3,
+       prob = TRUE)
+pred
+
+mean(pred == g.testing)
+table(pred,g.testing)
+
+# k = 5
+
+pred <- knn(ds.training,
+            ds.testing,
+            g.training,
+            k = 5,
+            prob = TRUE)
+pred
+
+mean(pred == g.testing)
+table(pred,g.testing)
+
+# k = 7
+pred <- knn(ds.training,
+            ds.testing,
+            g.training,
+            k = 7,
+            prob = TRUE)
+pred
+
+mean(pred == g.testing)
+table(pred,g.testing)
+
+
+
+
+# 문4) 
+# mlbench 패키지에서 제공하는 Sonar 데이터셋에 대해 k-최근접 이웃 알고리즘을 이용하여 모델을 만들고 예측 정확도를 측정하시오.
+# 
+# . Sonar 데이터셋에서 마지막에 있는 Class 열이 그룹 정보이다.
+# . k-최근접 이웃에서 k는 3으로 한다.
+# . 5-fold 교차 검증 방법으로 예측 정확도를 측정한다.
+
+
+library(cvTools)
+arr <- c()
+n <- ncol(Sonar)
+fold <- cvFolds( nrow(Sonar), K=5 )
+for(i in 1:5){
+  idx <- fold$which == i
+  ds.tr <- Sonar[idx, -n ]
+  ds.ts <- Sonar[-idx, -n ]
+  g.tr <- Sonar[idx, n]
+  g.ts <- Sonar[-idx, n]
+  pred <- knn(ds.tr, ds.ts, g.tr, k=3, prob = TRUE)
+  arr[i] <- mean(pred == g.ts)
+}
+arr
+mean(arr)
+
+
+
